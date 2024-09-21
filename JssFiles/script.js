@@ -143,6 +143,7 @@ function handleStartStop() {
 
 function resetTimer() {
     clearInterval(timer);
+    scrambleElement.style.display = 'block';
     isRunning = false;
     elapsedTime = 0;
     previousTime = 0;
