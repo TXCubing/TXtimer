@@ -219,3 +219,21 @@ body.loaded #loading-screen {
 body.loaded {
     overflow: auto;
 }
+
+#background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Ensure it's behind content but in front of background */
+    overflow: hidden;
+    pointer-events: none; /* Make sure it doesn't interfere with interaction */
+}
+
+#background-animation img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Make sure the gif covers the background properly */
+    opacity: 0.5; /* Adjust this to make it blend with the background */
+}
