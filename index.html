@@ -1,31 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <audio id="StopTimerSound" src="Sounds/Ding.mp3"></audio>
+    <audio id="HoverSound" src="Sounds/ButtonClick.mp3"></audio>
+    <audio id="ClickSound" src="Sounds/ButtonClick.mp3"></audio>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Maintenance</title>
+    <title>TXtimer</title>
+    <link rel="stylesheet" href="CssFiles/styles.css">
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        h1 {
-            font-size: 3em;
             margin: 0;
+            padding: 0;
         }
-        p {
-            font-size: 1.2em;
-            margin: 0;
+        .top-left {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #333;
+        }
+        .top-left img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
     </style>
 </head>
 <body>
-    <h1>Under Maintenance</h1>
-    <p>This site is currently under maintenance, a better version of the site will be up soon.</p>
+    <a href="https://www.youtube.com/@TXCubing" target="_blank" class="top-left">
+        <img src="Images/TXCubingLogo.jpg" alt="Click to visit TXCubing's YouTube Channel">
+    </a>
+    <div id="loading-screen">
+        <img src="Images/LoadingGif.gif" alt="Loading...">
+    </div>    
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+    <div class="container">
+        <h1>TXtimer</h1>
+        <div id="instructions">
+            Hold space, the screen, or your mouse to make the screen turn red. Release to start the timer (screen turns yellow). Press space, the screen, or your mouse to stop the timer (screen turns green).
+        </div>
+        <div id="scramble"></div>
+        <div class="controls">
+            <select id="cubeType">
+                <option value="2x2">2x2</option>
+                <option value="3x3">3x3</option>
+                <option value="4x4">4x4</option>
+                <option value="5x5">5x5</option>
+                <option value="6x6">6x6</option>
+                <option value="7x7">7x7</option>
+                <option value="8x8">8x8</option>
+                <option value="9x9">9x9</option>
+                <option value="10x10">10x10</option>
+                <option value="11x11">11x11</option>
+                <option value="12x12">12x12</option>
+                <option value="13x13">13x13</option>
+                <option value="14x14">14x14</option>
+                <option value="15x15">15x15</option>
+                <option value="16x16">16x16</option>
+                <option value="17x17">17x17</option>
+                <option value="18x18">18x18</option>
+                <option value="19x19">19x19</option>
+                <option value="20x20">20x20</option>
+                <option value="21x21">21x21</option>
+                <option value="pyraminx">Pyraminx</option>
+                <option value="skewb">Skewb</option>
+            </select>
+            <button id="generateScramble">Generate Scramble</button>
+            <button id="reset">Reset</button>
+        </div>
+        <div id="timer">00:00:00.000</div>
+    </div>
+    <script src="JssFiles/script.js"></script>
+    <script>
+        // Global error handler
+        window.onerror = function(message, source, lineno, colno, error) {
+            alert('Error: ' + message + '\nSource: ' + source + '\nLine: ' + lineno + '\nColumn: ' + colno + '\nError object: ' + JSON.stringify(error));
+            return true; // Prevents the default browser error handling
+        };
+
+        // Function to check loading timeout
+        function checkLoadingTimeout() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const loadingScreenStyle = window.getComputedStyle(loadingScreen);
+            if (loadingScreenStyle.display !== 'none' && loadingScreenStyle.visibility !== 'hidden') {
+                if (confirm('Loading Time Out. Would you like to refresh the page to try again?')) {
+                    location.reload();
+                } else {
+                    // Display the second loading GIF
+                    document.body.innerHTML = '<div id="loading-screen-2"><img src="Images/LoadingGif2.gif" alt="Loading..."></div>';
+                }
+            }
+        }
+
+        // Set timeout to check loading screen after 10 seconds
+        setTimeout(checkLoadingTimeout, 10000);
+    </script>
 </body>
 </html>

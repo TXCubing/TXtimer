@@ -6,6 +6,7 @@ let previousTime = 0;
 let previousSolveTime = null;
 
 const timerElement = document.getElementById('timer');
+const StopTimerSound = document.getElementById('StopTimerSound');
 const scrambleElement = document.getElementById('scramble');
 const cubeTypeSelect = document.getElementById('cubeType');
 const generateScrambleButton = document.getElementById('generateScramble');
@@ -133,6 +134,7 @@ function handleStartStop() {
             timerElement.innerHTML += ` ${improvementText}`;
         }
         previousSolveTime = elapsedTime;
+        StopTimerSound.play();
     } else {
         scrambleElement.style.display = 'none';
         startTime = Date.now() - elapsedTime;
@@ -176,3 +178,20 @@ function formatTime(time) {
 window.addEventListener('load', function() {
     document.body.classList.add('loaded');
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('button');
+    const hoverSound = document.getElementById('HoverSound');
+    const clickSound = document.getElementById('ClickSound');
+
+    buttons.forEach(button => {
+        button.addEventListener('mouseover', () => {
+            hoverSound.play();
+        });
+
+        button.addEventListener('click', () => {
+            clickSound.play();
+        });
+    });
+});
+

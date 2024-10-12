@@ -105,12 +105,19 @@ body {
 .container {
     background-color: #fff;
     padding: 20px;
+    border: 3px solid #333;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 90%;
     max-width: 600px;
     z-index: 1;
+}
+
+#soundButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 h1 {
